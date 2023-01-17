@@ -2,12 +2,13 @@ from random import randint
 import pyautogui as auto
 from time import sleep
 
-
 def find_image(image_path):
-    print("Looking for an image ...")
-    img = auto.locateOnScreen(image_path, confidence=0.7, grayscale=True)
-    sleep(0.5)
-    return img
+	print(f'Looking for an {image_path}...')
+	img = None
+	while(img == None):
+		img = auto.locateOnScreen(image_path, confidence=0.7, grayscale=True)
+	sleep(0.5)
+	return img
 
 def click_image(image_path):
     print("Clicking image ...")
@@ -15,14 +16,15 @@ def click_image(image_path):
     button = auto.center(img)
     auto.click(button)
     auto.click(button)
-    sleep(0.2)
+    auto.move(0,200)
 
 def in_battle():
-    if find_image("images/book.jpg") !=  None :
-        return False
-    else:
-        return True
-        
+	img = auto.locateOnScreen("images/book.jpg", confidence=0.7, grayscale=True)
+	if ( img == None):
+		return True
+	else:
+		return False
+
 def wander():
     for i in range(0,4):
         key_choice = randint(0,4)
@@ -59,6 +61,6 @@ while(True):
         click_image(image_path="images/pass.jpg")
         click_image(image_path="images/spell.jpg")
         # wait for book to be visible
-        while(find_image(image_path="Images/book.jpg") == NONE):
-            print()
+        while(in_battle()):
+	        sleep(0.1)
         wander()
