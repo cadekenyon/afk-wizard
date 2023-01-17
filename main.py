@@ -5,6 +5,7 @@ from time import sleep
 
 def find_image(image_path):
     print("Looking for an image ...")
+    auto.move(0, 300, duration=1)
     img = auto.locateOnScreen(image_path, confidence=0.7, grayscale=True)
     sleep(0.5)
     return img
