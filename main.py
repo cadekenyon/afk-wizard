@@ -19,7 +19,7 @@ def click_image(image_path):
     MoveMouseOutWay()
 
 def in_battle():
-    if find_image("images/book.jpg") == None :
+    if find_image("images/book.jpg") !=  None :
         return False
     else:
         return True
@@ -63,9 +63,3 @@ while(True):
         while(find_image(image_path="Images/book.jpg") == NONE):
             print()
         wander()
-
-
-
-
-
-
